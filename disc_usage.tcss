@@ -1,0 +1,16 @@
+DataTable {
+    border: round #666;
+}
+
+DataTable > .datatable--cursor-line {
+    background: $panel;
+    color: $text;
+}
+
+DataTable > .datatable--cursor-line:focus-within {
+    border: wide $accent;
+}
+
+.datatable--header-column {
+    text-style: bold;
+}
