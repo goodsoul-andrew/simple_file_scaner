@@ -1,13 +1,26 @@
-DataTable {
-    border: round #666;
+Screen {
+    background: $surface;
 }
 
-DataTable > .datatable--cursor-line {
+DirectoryTable {
+    border: round #666;
+    margin: 0;
+    padding: 0;
+    height: 90%;
+}
+
+AddressLine {
+    margin: 1 1 0 1;
+    padding: 0;
+    height: auto;
+}
+
+DirectoryTable > .datatable--cursor-line {
     background: $panel;
     color: $text;
 }
 
-DataTable > .datatable--cursor-line:focus-within {
+DirectoryTable > .datatable--cursor-line:focus-within {
     border: wide $accent;
 }
 

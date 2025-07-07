@@ -1,0 +1,1 @@
+/home/andrew-goodman/Программирование/simple_file_scaner/test/abcd.txt

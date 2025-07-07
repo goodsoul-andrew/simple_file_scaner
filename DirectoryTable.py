@@ -1,25 +1,25 @@
 from textual.widget import Widget
 from textual.widgets import DataTable
-from my_classes import FileElement
+from FileElement import FileElement
 from textual.reactive import reactive
 
+from utils import convert_size
 
-def size_sort(size: int):
-    if size is None:
-        return float('inf')
-    return size
 
 
 class DirectoryTable(DataTable):
     directory = reactive("")
 
-    def __init__(self, directory: str = "", *args, **kwargs):
+    def __init__(self, directory: str = "", show_bytes: bool = False, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.cursor_type = "row"
         self.add_column("Имя", key="name")
         self.add_column("Размер", key="size")
+        self.add_column("Владелец", key="owner")
         self.start_directory = directory
         self.directory = directory
+        self.show_bytes = show_bytes
+        self.convert_size = (lambda x: x) if self.show_bytes else convert_size
 
     def on_mount(self) -> None:
         self.refresh_data()
@@ -39,11 +39,10 @@ class DirectoryTable(DataTable):
 
         rows = []
         for child in dir_element.children:
-            name = f"{'📁' if child.is_folder else '🗋'} {child.name}"
-            rows.append((name, child.size))
+            name = f"{child.type_icon} {child.name}"
+            rows.append((name, child.size, child.owner))
         rows = list(sorted(rows, key=lambda el: -el[1]))
+        rows = [(el[0], self.convert_size(el[1]), el[2]) for el in rows]
         if self.directory != self.start_directory:
-            prev_path = self.directory[:self.directory.rfind("/")]
-            prev_size = self.app.dirs[prev_path].size
-            self.add_row("..", key="..")
+            self.add_row(" ..", key=" ..")
         self.add_rows(rows)
