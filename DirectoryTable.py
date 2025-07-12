@@ -16,6 +16,7 @@ class DirectoryTable(DataTable):
         self.add_column("Размер", key="size")
         self.add_column("Владелец", key="owner")
         self.add_column("Последнее изменение", key="mtime")
+        self.add_column("", key="visual_size")
         self.start_directory = directory
         self.directory = directory
         self.show_bytes = show_bytes
@@ -40,11 +41,10 @@ class DirectoryTable(DataTable):
         rows = []
         for child in dir_element.children:
             name = f"{child.type_icon} {child.name}"
-            rows.append([name, round(child.size, 2), child.owner, convert_utime(child.mtime)])
+            rows.append([name, child.size, child.owner, convert_utime(child.mtime), child.visual_size()])
         rows = list(sorted(rows, key=lambda el: -el[1]))
         for el in rows:
             el[1] = self.convert_size(el[1])
-        # rows = [(el[0], self.convert_size(el[1]), el[2]) for el in rows]
         if self.directory != self.start_directory:
-            self.add_row(" ..", key=" ..")
+            self.add_row(" ..", self.convert_size(dir_element.size), dir_element.owner, convert_utime(dir_element.mtime), key=" ..")
         self.add_rows(rows)

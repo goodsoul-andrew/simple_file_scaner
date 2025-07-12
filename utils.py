@@ -9,8 +9,14 @@ def convert_size(size: int) -> str:
     # return f"{size} b"
     for m in measures:
         if size < measures[m]:
-            return f"{round(size / (measures[m] / 1024), 2)} {m}"
-    return f"{round(size / measures['Tb'], 2)} Tb"
+            s = round(size / (measures[m] / 1024), 2)
+            if int(s) == s:
+                s = int(s)
+            return f"{s} {m}"
+    s = round(size / measures['Tb'], 2)
+    if int(s) == s:
+        s = int(s)
+    return f"{s} Tb"
 
 
 def size_sort(size: int | str) -> float:

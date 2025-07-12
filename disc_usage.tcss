@@ -6,7 +6,7 @@ DirectoryTable {
     border: round #666;
     margin: 0;
     padding: 0;
-    height: 90%;
+    height: 80%;
 }
 
 AddressLine {
