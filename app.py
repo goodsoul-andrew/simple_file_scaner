@@ -33,11 +33,13 @@ class ScanerApp(App):
 
     def on_mount(self) -> None:
         self.styles.background = "transparent"
-        self.scan_directory()
+        self.scan()
 
     @work(thread=True)
+    def scan(self):
+        self.scan_directory()
+
     def scan_directory(self):
-        # self.dirs = {self.start_dir: FileElement("", self.start_dir)}
         for root, folders, files in os.walk(self.start_dir, followlinks=False):
             for curr_file in files:
                 path = os.path.join(root, curr_file)
