@@ -12,7 +12,11 @@ DirectoryTable {
 AddressLine {
     margin: 1 1 0 1;
     padding: 0;
-    height: auto;
+    height: 5%;
+}
+
+UsersLine {
+    height: 10%;
 }
 
 DirectoryTable > .datatable--cursor-line {

@@ -59,7 +59,7 @@ class FileElement:
         p = round(self.size / FileElement.max_size * 10)
         '''if p > 10:
             raise ValueError(f"{p} > 10, {self.size}, {FileElement.max_size}")'''
-        return "=" * p + " " * (10 - p)
+        return "█" * p + " " * (10 - p)
 
     def __hash__(self):
         return hash(self.path)
