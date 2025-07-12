@@ -1,9 +1,9 @@
 # Simple File Scaner
 ## Simple File Scaner - програмка, предназначенная для того, чтобы смотреть, сколько места занимают файлы и папки
 
-###Использование
-*Для работы нужно установить textual: pip install textual*
-python3 main.py
+###Использование  
+*Для работы нужно установить textual: pip install textual*  
+python3 main.py  
 -b или --bytes: показывать размер в байтах
 
 Хоткеи:
