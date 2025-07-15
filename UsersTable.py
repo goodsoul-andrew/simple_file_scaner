@@ -1,8 +1,11 @@
+from textual.app import ComposeResult
+from textual.containers import Horizontal
 from textual.reactive import reactive
-from textual.widgets import DataTable
+from textual.widgets import DataTable, Checkbox
 from textual.widget import Widget
 
 from FileElement import FileElement
+from FilterCheckbox import FilterCheckbox
 from utils import convert_size
 
 

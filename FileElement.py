@@ -1,5 +1,6 @@
 import os
 import pwd
+import mimetypes
 
 
 class FileElement:
@@ -19,6 +20,20 @@ class FileElement:
         except KeyError:
             self.owner = "???"
         self.mtime = stat.st_mtime
+
+        self.mime_type = "unknown"
+        mime_type, _ = mimetypes.guess_type(self.path)
+        if mime_type is not None:
+            if mime_type.startswith("image"):
+                self.mime_type = "image"
+            elif mime_type.startswith("video"):
+                self.mime_type = "video"
+            elif mime_type.startswith("audio"):
+                self.mime_type = "audio"
+            elif mime_type.startswith("text"):
+                self.mime_type = "text"
+        if self.is_dir:
+            self.mime_type = "folder"
 
         self.parent: FileElement = parent
         self.children: set[FileElement] = set()
@@ -53,7 +68,16 @@ class FileElement:
         if self.is_dir:
             return res + '📁'
         else:
-            return res + '🗋'
+            icon = '🗋'
+            if self.mime_type == "image":
+                icon = '🖼️'
+            elif self.mime_type == "audio":
+                icon = '🎵'
+            elif self.mime_type == "video":
+                icon = '🎬'
+            elif self.mime_type == "text":
+                icon = '📄'
+            return res + icon
 
     def visual_size(self):
         p = round(self.size / FileElement.max_size * 10)

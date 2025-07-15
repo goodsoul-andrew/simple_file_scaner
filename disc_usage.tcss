@@ -6,7 +6,7 @@ DirectoryTable {
     border: round #666;
     margin: 0;
     padding: 0;
-    height: 80%;
+    height: 60%;
 }
 
 AddressLine {
@@ -15,7 +15,15 @@ AddressLine {
     height: 5%;
 }
 
-UsersLine {
+UsersCheckboxLine {
+    height: 10%;
+}
+
+TypesCheckboxLine {
+    height: 10%;
+}
+
+MtimeCheckboxLine {
     height: 10%;
 }
 

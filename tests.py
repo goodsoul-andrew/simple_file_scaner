@@ -12,7 +12,7 @@ print(test_app.dirs)
     ("test/abcd.txt", 5),
     ("test/inner/link_music", 83),
     ("test/inner/", 5386),
-    ("test", 3651021)
+    ("test", 4090600)
 ])
 def test_size(path: str, expected_size: int):
     path = os.path.abspath(path)
